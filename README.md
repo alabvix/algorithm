@@ -1,3 +1,3 @@
 # Algorithm
 
-Just an algoritms and datastructes study project.
+Just an algorithms and datastructes study project.
