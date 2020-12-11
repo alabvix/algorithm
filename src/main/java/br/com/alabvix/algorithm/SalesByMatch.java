@@ -65,4 +65,10 @@ public class SalesByMatch {
        return totalPairs;
     }
 
+    public int findNumberOfPairs3(int n, int[] ar) {
+       int totalPairs = 0;
+
+       return totalPairs;
+    }
+
 }
