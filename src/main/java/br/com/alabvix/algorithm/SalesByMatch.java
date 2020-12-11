@@ -1,6 +1,7 @@
 package br.com.alabvix.algorithm;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Map;
  *
  * For example, there are n==7 socks with colors ar=[1,2,1,2,1,3,2].
  * There is one pair of color 1 and one of color 2.
- * There are three od   d socks left, one of each color.
+ * There are three odd socks left, one of each color.
  * The number of pairs is 2.
  *
  * Constraints:
@@ -20,21 +21,7 @@ import java.util.Map;
  */
 public class SalesByMatch {
 
-    public static void main(String[] args) {
-
-        int[] arr = {10,20,20,10,10,30,50,10,20};
-        int n = 9;
-
-        int r = sockMerchant_v1(n,arr);
-        if (r==3) {
-            System.out.println("sucesso " + r);
-        } else {
-            System.out.println("fracasso " + r);
-        }
-    }
-
-    static int sockMerchant_v1(int n, int[] ar) {
-        long start = System.currentTimeMillis();
+   public int findNumberOfPairs1(int n, int[] ar) {
 
         Map<Integer,Integer> mapa = new HashMap<>();
 
@@ -48,23 +35,34 @@ public class SalesByMatch {
             }
             mapa.put(ar[i], count);
         }
+
         for (Map.Entry<Integer, Integer> entry : mapa.entrySet()) {
-            System.out.println("Key = " + entry.getKey() + ":" + entry.getValue());
+            //System.out.println("Key = " + entry.getKey() + ":" + entry.getValue());
             if (entry.getValue() >=2) {
                 int t = entry.getValue()/2;
                 pairs += t;
             }
         }
-        long end = System.currentTimeMillis();
-        float sec = (end - start) / 1000F; System.out.println(sec + " seconds");
 
         return pairs;
     }
 
-    static int sockMerchant_v2(int n, int[] ar) {
+    public int findNumberOfPairs2(int n, int[] ar) {
 
-        return 0;
+       HashSet<Integer> buffer = new HashSet<>();
+       int totalPairs = 0;
+
+       for (int i=0; i<n; i++) {
+           Integer sock = ar[i];
+
+           if (buffer.contains(sock)) {
+               totalPairs++;
+           } else {
+               buffer.add(sock);
+           }
+       }
+
+       return totalPairs;
     }
-
 
 }
